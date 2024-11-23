@@ -47,6 +47,7 @@
             display: flex;
             flex-direction: column;
             align-items: center;
+            position: relative;
         }
 
         label {
@@ -56,7 +57,7 @@
             text-align: center;
         }
 
-        select, input {
+        select, input, button {
             width: 100%;
             padding: 8px;
             border: 1px solid #ccc;
@@ -65,7 +66,7 @@
             background-color: #ffffff;
         }
 
-        select:focus, input:focus {
+        select:focus, input:focus, button:focus {
             outline: none;
             border-color: #007bff;
         }
@@ -80,11 +81,74 @@
             font-size: 16px;
             border-radius: 5px;
             text-align: center;
-            justify-self: end;
-            margin-top: 20px;
+            margin-top: 30px;
+            grid-column: 5 / 6;
         }
 
         .btn-reserve:hover {
+            background-color: #004494;
+        }
+
+        .passenger-popup {
+            position: absolute;
+            top: calc(100% + 8px);
+            left: 0;
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            display: none;
+            z-index: 10;
+            width: 300px;
+        }
+
+        .passenger-popup h3 {
+            margin-top: 0;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .passenger-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .passenger-row span {
+            font-size: 16px;
+        }
+
+        .passenger-row button {
+            background-color: #0056b3;
+            color: white;
+            border: none;
+            padding: 10px 10px;
+            cursor: pointer;
+            font-size: 20px;
+        }
+
+        .passenger-row button:hover {
+            background-color: #004494;
+        }
+
+        .popup-actions {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .popup-actions button {
+            background-color: #0056b3;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            font-size: 16px;
+            border-radius: 5px;
+        }
+
+        .popup-actions button:hover {
             background-color: #004494;
         }
 
@@ -176,12 +240,31 @@
 
         <div class="item">
             <label for="passengers">인원수</label>
-            <select id="passengers">
-                <option selected disabled>인원수</option>
-                <option value="성인">성인</option>
-                <option value="청소년">청소년</option>
-                <option value="유아">유아</option>
-            </select>
+            <button id="passengersButton">인원수 </button>
+            <div class="passenger-popup" id="passengerPopup">
+                <h3>인원수 </h3>
+                <div class="passenger-row">
+                    <span>성인 (만 16세 이상)</span>
+                    <button onclick="changePassengerCount('adult', -1)">-</button>
+                    <span id="adultCount">1</span>
+                    <button onclick="changePassengerCount('adult', 1)">+</button>
+                </div>
+                <div class="passenger-row">
+                    <span>청소년 (만 12-15세)</span>
+                    <button onclick="changePassengerCount('teen', -1)">-</button>
+                    <span id="teenCount">0</span>
+                    <button onclick="changePassengerCount('teen', 1)">+</button>
+                </div>
+                <div class="passenger-row">
+                    <span>유아 (만 0-11세)</span>
+                    <button onclick="changePassengerCount('child', -1)">-</button>
+                    <span id="childCount">0</span>
+                    <button onclick="changePassengerCount('child', 1)">+</button>
+                </div>
+                <div class="popup-actions">
+                    <button onclick="applyPassengerCount()">적용</button>
+                </div>
+            </div>
         </div>
 
         <div class="item">
@@ -207,6 +290,38 @@
         const destinationSelect = document.getElementById('destination');
         const departureImage = document.getElementById('departureImage');
         const destinationImage = document.getElementById('destinationImage');
+        const passengerPopup = document.getElementById('passengerPopup');
+        const passengersButton = document.getElementById('passengersButton');
+        const adultCountElement = document.getElementById('adultCount');
+        const teenCountElement = document.getElementById('teenCount');
+        const childCountElement = document.getElementById('childCount');
+
+        let adultCount = 1;
+        let teenCount = 0;
+        let childCount = 0;
+
+        passengersButton.addEventListener('click', () => {
+            passengerPopup.style.display = passengerPopup.style.display === 'block' ? 'none' : 'block';
+        });
+
+        function changePassengerCount(type, change) {
+            if (type === 'adult') {
+                adultCount = Math.max(1, adultCount + change);
+                adultCountElement.textContent = adultCount;
+            } else if (type === 'teen') {
+                teenCount = Math.max(0, teenCount + change);
+                teenCountElement.textContent = teenCount;
+            } else if (type === 'child') {
+                childCount = Math.max(0, childCount + change);
+                childCountElement.textContent = childCount;
+            }
+        }
+
+        function applyPassengerCount() {
+            const passengerSummary = `성인 ${adultCount}${teenCount > 0 ? ", 청소년 " + teenCount : ""}${childCount > 0 ? ", 유아 " + childCount : ""}`;
+            passengersButton.textContent = passengerSummary;
+            passengerPopup.style.display = 'none';
+        }
 
         const departureData = {
             incheon: {
