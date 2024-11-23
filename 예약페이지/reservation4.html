@@ -9,110 +9,66 @@
             font-family: 'Noto Sans KR', sans-serif;
             margin: 0;
             padding: 0;
-            background-image: url('background.jpg'); /* 배경 이미지 추가 */
-            background-size: cover;
-            background-position: center;
+            background-color: #0a1733;
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
-            color: #ffffff; /* 텍스트 색상 흰색으로 변경 */
+            color: #ffffff;
         }
 
         .summary-container {
-            background-color: rgba(0, 0, 0, 0.7); /* 반투명 배경 */
-            border-radius: 20px;
+            background-color: transparent;
             padding: 40px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
-            max-width: 600px;
+            max-width: 800px;
             width: 100%;
-            text-align: center;
-        }
-
-        .summary-header {
-            font-size: 28px;
-            font-weight: bold;
-            color: #00aaff; /* 하이라이트 색상 적용 */
-            margin-bottom: 20px;
-        }
-
-        .summary-details {
-            margin-bottom: 30px;
             text-align: left;
         }
 
-        .summary-details label {
+        .price {
+            font-size: 32px;
             font-weight: bold;
-            color: #ffffff; /* 텍스트 색상 흰색으로 */
+            color: #00aaff;
+            margin-bottom: 10px;
         }
 
-        .summary-details .detail-item {
-            margin-bottom: 15px;
-        }
-
-        .summary-details .value {
-            margin-left: 10px;
-            font-weight: normal;
-            color: #f0f0f0; /* 조금 더 밝은 색상으로 값 강조 */
-        }
-
-        .btn-complete {
-            background-color: #007bff; /* 파란색 버튼 배경 */
-            color: white;
-            border: none;
-            cursor: pointer;
-            padding: 15px;
+        .info {
             font-size: 18px;
-            font-weight: bold;
-            border-radius: 10px;
-            text-align: center;
-            transition: background-color 0.3s ease;
+            margin-bottom: 20px;
         }
 
-        .btn-complete:hover {
-            background-color: #0056b3; /* 호버 시 어두운 파란색 */
+        .info .separator {
+            color: rgba(255, 255, 255, 0.5);
+            margin: 0 10px;
+        }
+
+        .flight-details {
+            font-size: 18px;
+            margin-bottom: 15px;
+            line-height: 1.6;
+        }
+
+        .date-details {
+            font-size: 18px;
+            text-align: right;
+            line-height: 1.6;
         }
     </style>
 </head>
 <body>
     <div class="summary-container">
-        <div class="summary-header">결제 완료</div>
-        <div class="summary-details">
-            <div class="detail-item">
-                <label>가격:</label><span class="value" id="price"></span>
-            </div>
-            <div class="detail-item">
-                <label>인원수:</label><span class="value" id="passenger"></span>
-            </div>
-            <div class="detail-item">
-                <label>좌석:</label><span class="value" id="seat"></span>
-            </div>
-            <div class="detail-item">
-                <label>출발지:</label><span class="value" id="departure"></span>
-            </div>
-            <div class="detail-item">
-                <label>도착지:</label><span class="value" id="destination"></span>
-            </div>
-            <div class="detail-item">
-                <label>출발 날짜:</label><span class="value" id="date"></span>
-            </div>
-            <div class="detail-item">
-                <label>이름:</label><span class="value" id="name"></span>
-            </div>
-            <div class="detail-item">
-                <label>영어 이름:</label><span class="value" id="englishName"></span>
-            </div>
-            <div class="detail-item">
-                <label>여권 번호:</label><span class="value" id="passport"></span>
-            </div>
-            <div class="detail-item">
-                <label>전화번호:</label><span class="value" id="phone"></span>
-            </div>
-            <div class="detail-item">
-                <label>생년월일:</label><span class="value" id="birthdate"></span>
-            </div>
+        <div class="price" id="price"></div>
+        <div class="info">
+            <span id="passenger"></span>
+            <span class="separator">|</span>
+            <span id="seat"></span>
         </div>
-        <button class="btn-complete">결제가 완료되었습니다</button>
+        <div class="flight-details">
+            <div id="route"></div>
+        </div>
+        <div class="date-details">
+            <div id="date"></div>
+        </div>
     </div>
 
     <script>
@@ -123,14 +79,8 @@
             document.getElementById('price').textContent = reservationDetails.price;
             document.getElementById('passenger').textContent = reservationDetails.passenger;
             document.getElementById('seat').textContent = reservationDetails.seat;
-            document.getElementById('departure').textContent = reservationDetails.departure;
-            document.getElementById('destination').textContent = reservationDetails.destination;
+            document.getElementById('route').textContent = `${reservationDetails.departure} - ${reservationDetails.destination}`;
             document.getElementById('date').textContent = reservationDetails.date;
-            document.getElementById('name').textContent = reservationDetails.name;
-            document.getElementById('englishName').textContent = reservationDetails.englishName;
-            document.getElementById('passport').textContent = reservationDetails.passport;
-            document.getElementById('phone').textContent = reservationDetails.phone;
-            document.getElementById('birthdate').textContent = reservationDetails.birthdate;
         }
     </script>
 </body>
