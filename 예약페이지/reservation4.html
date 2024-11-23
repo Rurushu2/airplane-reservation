@@ -92,33 +92,38 @@
                 <label>이름:</label><span class="value" id="name"></span>
             </div>
             <div class="detail-item">
+                <label>영어 이름:</label><span class="value" id="englishName"></span>
+            </div>
+            <div class="detail-item">
                 <label>여권 번호:</label><span class="value" id="passport"></span>
+            </div>
+            <div class="detail-item">
+                <label>전화번호:</label><span class="value" id="phone"></span>
+            </div>
+            <div class="detail-item">
+                <label>생년월일:</label><span class="value" id="birthdate"></span>
             </div>
         </div>
         <button class="btn-complete">결제가 완료되었습니다</button>
     </div>
 
     <script>
-        // 예약 정보는 이전 입력을 기반으로 동적으로 채워짐
-        const reservationDetails = {
-            price: '170,000₩',
-            passenger: '1명 (성인)',
-            seat: '일반석',
-            departure: '인천 (ICN)',
-            destination: '후쿠오카 (FUK)',
-            date: '2024.12.04 (수요일) - 2024.12.06 (금요일)',
-            name: '이언우',
-            passport: 'M12345678'
-        };
+        // 메인 예약 페이지에서 받은 데이터를 가져옴
+        const reservationDetails = JSON.parse(localStorage.getItem('reservationDetails'));
 
-        document.getElementById('price').textContent = reservationDetails.price;
-        document.getElementById('passenger').textContent = reservationDetails.passenger;
-        document.getElementById('seat').textContent = reservationDetails.seat;
-        document.getElementById('departure').textContent = reservationDetails.departure;
-        document.getElementById('destination').textContent = reservationDetails.destination;
-        document.getElementById('date').textContent = reservationDetails.date;
-        document.getElementById('name').textContent = reservationDetails.name;
-        document.getElementById('passport').textContent = reservationDetails.passport;
+        if (reservationDetails) {
+            document.getElementById('price').textContent = reservationDetails.price;
+            document.getElementById('passenger').textContent = reservationDetails.passenger;
+            document.getElementById('seat').textContent = reservationDetails.seat;
+            document.getElementById('departure').textContent = reservationDetails.departure;
+            document.getElementById('destination').textContent = reservationDetails.destination;
+            document.getElementById('date').textContent = reservationDetails.date;
+            document.getElementById('name').textContent = reservationDetails.name;
+            document.getElementById('englishName').textContent = reservationDetails.englishName;
+            document.getElementById('passport').textContent = reservationDetails.passport;
+            document.getElementById('phone').textContent = reservationDetails.phone;
+            document.getElementById('birthdate').textContent = reservationDetails.birthdate;
+        }
     </script>
 </body>
 </html>
