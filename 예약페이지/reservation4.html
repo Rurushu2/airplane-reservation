@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>결제 완료</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f3f4f6;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .summary-container {
+            background-color: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            max-width: 600px;
+            width: 100%;
+            text-align: center;
+        }
+
+        .summary-header {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        .summary-details {
+            margin-bottom: 30px;
+            text-align: left;
+        }
+
+        .summary-details label {
+            font-weight: bold;
+        }
+
+        .summary-details .detail-item {
+            margin-bottom: 15px;
+        }
+
+        .summary-details .value {
+            margin-left: 10px;
+            font-weight: normal;
+        }
+
+        .btn-complete {
+            background-color: #28a745;
+            color: white;
+            border: none;
+            cursor: pointer;
+            padding: 15px;
+            font-size: 16px;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .btn-complete:hover {
+            background-color: #218838;
+        }
+    </style>
+</head>
+<body>
+    <div class="summary-container">
+        <div class="summary-header">결제 완료</div>
+        <div class="summary-details">
+            <div class="detail-item">
+                <label>가격:</label><span class="value" id="price"></span>
+            </div>
+            <div class="detail-item">
+                <label>인원수:</label><span class="value" id="passenger"></span>
+            </div>
+            <div class="detail-item">
+                <label>좌석:</label><span class="value" id="seat"></span>
+            </div>
+            <div class="detail-item">
+                <label>출발지:</label><span class="value" id="departure"></span>
+            </div>
+            <div class="detail-item">
+                <label>도착지:</label><span class="value" id="destination"></span>
+            </div>
+            <div class="detail-item">
+                <label>출발 날짜:</label><span class="value" id="date"></span>
+            </div>
+            <div class="detail-item">
+                <label>이름:</label><span class="value" id="name"></span>
+            </div>
+            <div class="detail-item">
+                <label>여권 번호:</label><span class="value" id="passport"></span>
+            </div>
+        </div>
+        <button class="btn-complete">결제가 완료되었습니다</button>
+    </div>
+
+    <script>
+        // 예약 정보는 이전 입력을 기반으로 동적으로 채워짐
+        const reservationDetails = {
+            price: '170,000₩',
+            passenger: '1명 (성인)',
+            seat: '일반석',
+            departure: '인천 (ICN)',
+            destination: '후쿠오카 (FUK)',
+            date: '2024.12.04 (수요일) - 2024.12.06 (금요일)',
+            name: '이언우',
+            passport: 'M12345678'
+        };
+
+        document.getElementById('price').textContent = reservationDetails.price;
+        document.getElementById('passenger').textContent = reservationDetails.passenger;
+        document.getElementById('seat').textContent = reservationDetails.seat;
+        document.getElementById('departure').textContent = reservationDetails.departure;
+        document.getElementById('destination').textContent = reservationDetails.destination;
+        document.getElementById('date').textContent = reservationDetails.date;
+        document.getElementById('name').textContent = reservationDetails.name;
+        document.getElementById('passport').textContent = reservationDetails.passport;
+    </script>
+</body>
+</html>
