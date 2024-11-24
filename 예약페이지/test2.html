@@ -94,12 +94,12 @@
             top: calc(100% + 8px);
             left: 0;
             background-color: white;
-            padding: 20px;
+            padding: 10px 20px;
             border-radius: 10px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
             display: none;
             z-index: 10;
-            width: 400px;
+            width: 500px;
         }
 
         .passenger-popup h3 {
@@ -110,22 +110,69 @@
 
         .passenger-row {
             display: flex;
-            justify-content: space-between; /* 글씨와 버튼 그룹 사이의 간격 추가 */
+            justify-content: space-between;
+            margin-bottom: 10px; /* 각 행 간의 간격 유지 */
             align-items: center;
-            
+            padding: 10px 0; /* 각 행의 간격 추가 */
+            border-bottom: 1px solid #ddd; /* 각 행 구분선 */
+        }
+
+        .passenger-label {
+            display: flex;
+            flex-direction: column; /* 글씨를 위아래로 정렬 */
+            text-align: left; /* 왼쪽 정렬 */
+            white-space: nowrap; /* 텍스트 줄바꿈 방지 */
+        }
+
+
+        .passenger-label span:first-child {
+            font-size: 20px; /* 메인 텍스트 크기 */
+            font-weight: bold; /* 메인 텍스트 강조 */
+            color: #000; /* 진한 글씨 */
+        }
+
+        .passenger-label span:last-child {
+            font-size: 14px; /* 보조 텍스트 크기 */
+            color: #888; /* 흐린 회색 */
         }
 
         .passenger-controls {
             display: flex;
             align-items: center;
-            gap: 0; /* - 버튼, 숫자, + 버튼 간 간격 */
+            gap: 1px; /* - 버튼, 숫자, + 버튼 간 간격 */
         }
 
-        .passenger-controls button, 
-        .passenger-controls span {
-             margin: 0; /* 모든 여백 제거 */
-             padding: 0; /* 내부 여백 제거 */
+        .price-info {
+            text-align: left;
+            margin: 80px 0; /* 위아래 간격을 조정 */
+            font-size: 20px;
+            color: #333;
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 10px;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
         }
+
+        .price-info ul {
+            list-style-type: none; /* 기본 글머리 제거 */
+            padding-left: 20px;
+        }
+        
+        .price-info li {
+            position: relative;
+            margin-bottom: 8px;
+            padding-left: 25px; /* 아이콘과 텍스트 간격 */
+        }
+        
+        .price-info li::before {
+            content: '✈️'; /* 비행기 아이콘 */
+            position: absolute;
+            left: 0;
+            font-size: 16px; /* 아이콘 크기 조정 */
+            color: #0056b3; /* 아이콘 색상 */
+        }
+        
+        
 
         .passenger-row span {
             font-size: 16px; /* 글자 크기 유지 */
@@ -155,7 +202,7 @@
         .popup-actions {
             display: flex;
             justify-content: center;
-            margin-top: 200px;
+            margin-top: 10px;
         }
         
         /*적용버튼*/
@@ -265,25 +312,46 @@
             <div class="passenger-popup" id="passengerPopup">
                 <h3>인원수 </h3>
                 <div class="passenger-row">
-                    <span>성인 (만 16세 이상)</span>
-                    <div class="passenger-controls"></div>
-                    <button onclick="changePassengerCount('adult', -1)">-</button>
-                    <span id="adultCount">1</span>
-                    <button onclick="changePassengerCount('adult', 1)">+</button>
+                    <div class="passenger-label">
+                        <span>성인</span>
+                        <span>(만 16세 이상)</span>
+                    </div>
+                    <div class="passenger-controls">        
+                        <button onclick="changePassengerCount('adult', -1)">-</button>
+                        <span id="adultCount">0</span>
+                        <button onclick="changePassengerCount('adult', 1)">+</button>
+                    </div>
                 </div>
                 <div class="passenger-row">
-                    <span>청소년 (만 12-15세)</span>
-                    <div class="passenger-controls"></div>
-                    <button onclick="changePassengerCount('teen', -1)">-</button>
-                    <span id="teenCount">0</span>
-                    <button onclick="changePassengerCount('teen', 1)">+</button>
+                    <div class="passenger-label">
+                        <span>청소년</span>
+                        <span>(만 12-15세)</span>
+                    </div>
+                    <div class="passenger-controls">
+                        <button onclick="changePassengerCount('teen', -1)">-</button>
+                        <span id="teenCount">0</span>
+                        <button onclick="changePassengerCount('teen', 1)">+</button>
+                    </div>
                 </div>
                 <div class="passenger-row">
-                    <span>유아 (만 0-11세)</span>
-                    <div class="passenger-controls"></div>
-                    <button onclick="changePassengerCount('child', -1)">-</button>
-                    <span id="childCount">0</span>
-                    <button onclick="changePassengerCount('child', 1)">+</button>
+                    <div class="passenger-label">
+                        <span>유아</span>
+                        <span>(만 0-11세)</span>
+                    </div>
+                    
+                    <div class="passenger-controls">
+                        <button onclick="changePassengerCount('child', -1)">-</button>
+                        <span id="childCount">0</span>
+                        <button onclick="changePassengerCount('child', 1)">+</button>
+                    </div>
+                </div>
+                <div class="price-info">
+                    <ul>
+                        <li>성인 1인당 Economy석 가격: 30,000원</li>
+                        <li>청소년 1인당 Economy석 가격: 30,000원</li>
+                        <li>유아 1인당 Economy석 가격: 30,000원</li>
+                    </ul>
+                   
                 </div>
                 <div class="popup-actions">
                     <button onclick="applyPassengerCount()">적용</button>
