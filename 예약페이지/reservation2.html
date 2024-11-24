@@ -1,10 +1,17 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>항공 예약 시스템</title>
     <style>
+        
+        body, h1, h2, h3, p, li, button, select, input {
+            font-family: 'Roboto', Arial, sans-serif; /* Roboto를 모든 텍스트에 적용 */
+        }
+        
         body {
             font-family: Arial, sans-serif;
             margin: 0;
@@ -33,14 +40,15 @@
         .container {
             background-color: rgba(0, 40, 85, 0.9);
             border-radius: 20px;
-            padding: 30px;
-            width: 80%;
-            max-width: 1000px;
+            padding: 50px;
+            width: 100%;
+            max-width: 1200px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
             display: grid;
             grid-template-columns: repeat(5, 1fr);
             align-items: center;
             gap: 20px;
+            margin-top: 100px; /* 컨테이너 자체에 아래로 이동 */
         }
 
         .item {
@@ -224,7 +232,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            margin-top: 200px;
+            margin-top: 50px;
             width: 100%;
             height: 60vh;
             position: relative;
@@ -251,30 +259,53 @@
 
         .image-box img {
             width: 100%;
-            border-radius: 10px;
+            border-radius: 10px 10px 0 0; /* 윗부분에만 곡선 */
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+            box-sizing: border-box; /* 패딩/보더 포함 크기 계산 */
         }
 
         .image-description {
-            margin-top: 0px;
+            font-family: 'Roboto', Arial, sans-serif;
+            margin-top: 0;
+            line-height: 1.6;
             color: #333;
             font-size: 18px;
             background-color: rgba(255, 255, 255, 0.9);
             padding: 15px;
-            border-radius: 5px;
+            border-radius: 0 0 10px 10px; /* 아랫부분만 곡선 */
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
             text-align: left;
+            width: 100%; /* 이미지와 동일한 너비 */
+            font-weight: bold; /* 글씨를 진하게 만듭니다 */
+            box-sizing: border-box; /* 패딩/보더 포함 크기 계산 */
         }
+        
 
         .image-description ul {
-            list-style-type: disc;
-            padding-left: 20px;
+            list-style: none; /* 기본 글머리 제거 */
+            padding: 0;
             margin: 0;
         }
 
         .image-description ul li {
-            margin-bottom: 8px;
+            position: relative; /* ::before로 아이콘 삽입 */
+            padding-left: 30px; /* 아이콘과 텍스트 간격 */
+            margin-bottom: 10px;
         }
+
+        .image-description ul li::before {
+            content: ""; /* 이미지 삽입 */
+            position: absolute;
+            top: 50%; /* 텍스트 중간 정렬 */
+            left: 0;
+            transform: translateY(-50%);
+            width: 30px; /* 아이콘 너비 */
+            height: 30px; /* 아이콘 높이 */
+            background-image: url('location-icon.png'); /* 이미지 경로 */
+            background-size: contain; /* 이미지 크기 조정 */
+            background-repeat: no-repeat; /* 반복 제거 */
+        }
+
     </style>
 </head>
 <body>
@@ -283,9 +314,9 @@
             <label for="departure">출발지</label>
             <select id="departure">
                 <option selected disabled>출발지</option>
-                <option value="incheon">인천</option>
-                <option value="gimpo">김포</option>
-                <option value="jeju">제주</option>
+                <option value="incheon">ICN 인천</option>
+                <option value="gimpo">GMP 김포</option>
+                <option value="jeju">CJU 제주</option>
             </select>
         </div>
 
@@ -419,25 +450,25 @@
             incheon: {
                 img: 'incheon.jpg',
                 desc: [
-                    '인천국제공항은 대한민국의 주요 관문입니다.',
-                    '세계 최고 수준의 시설을 갖추고 있습니다.',
-                    '다양한 국제선 항공편을 제공합니다.'
+                    ' 인천광역시 중구 공항로 271와 제2터미널대로 444',
+                    ' 대한민국 최대 규모의 공항.',
+                    ' 세계 최고 품질 서비스를 제공하는 공항으로 12년 연속 선정될 정도로 시설이 훌륭하다.'
                 ]
             },
             gimpo: {
                 img: 'gimpo.jpg',
                 desc: [
-                    '김포공항은 수도권 내 근접한 위치입니다.',
-                    '주로 국내선을 운영합니다.',
-                    '편리한 교통으로 접근성이 뛰어납니다.'
+                    ' 국제선: 서울특별시 강서구 하늘길 38 (방화동)',
+                    ' 국내선: 서울특별시 강서구 하늘길 111 (공항동)',
+                    ' 한국공항공사 관할의 순수 민간공항 중에서도 규모가 가장 큰 공항이다'
                 ]
             },
             jeju: {
                 img: 'jeju.jpg',
                 desc: [
-                    '제주공항은 아름다운 섬으로 향하는 주요 관문입니다.',
-                    '국내외 관광객들이 많이 방문합니다.',
-                    '다양한 지역 특산품 매장을 보유하고 있습니다.'
+                    ' 제주특별자치도 제주시 공항로 2 (용담2동)',
+                    ' 운항간격이 매우 짧다',
+                    ' 현재 인천국제공항을 제외한 한국의 국제공항 중 운항횟수 및 이용객이 가장 많은 공항'
                 ]
             }
         };
