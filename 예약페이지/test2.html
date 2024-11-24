@@ -110,15 +110,21 @@
 
         .passenger-row {
             display: flex;
-            justify-content: space-between;
+            justify-content: space-between; /* 글씨와 버튼 그룹 사이의 간격 추가 */
             align-items: center;
-            gap: 0;
+            
         }
 
         .passenger-controls {
             display: flex;
             align-items: center;
-            gap: 1px; /* - 버튼, 숫자, + 버튼 간 간격 */
+            gap: 0; /* - 버튼, 숫자, + 버튼 간 간격 */
+        }
+
+        .passenger-controls button, 
+        .passenger-controls span {
+             margin: 0; /* 모든 여백 제거 */
+             padding: 0; /* 내부 여백 제거 */
         }
 
         .passenger-row span {
@@ -260,27 +266,24 @@
                 <h3>인원수 </h3>
                 <div class="passenger-row">
                     <span>성인 (만 16세 이상)</span>
-                    <div class="passenger-controls">
-                        <button onclick="changePassengerCount('adult', -1)">-</button>
-                        <span id="adultCount">0</span>
-                        <button onclick="changePassengerCount('adult', 1)">+</button>
-                    </div>
+                    <div class="passenger-controls"></div>
+                    <button onclick="changePassengerCount('adult', -1)">-</button>
+                    <span id="adultCount">1</span>
+                    <button onclick="changePassengerCount('adult', 1)">+</button>
                 </div>
                 <div class="passenger-row">
                     <span>청소년 (만 12-15세)</span>
-                    <div class="passenger-controls">
-                        <button onclick="changePassengerCount('teen', -1)">-</button>
-                        <span id="teenCount">0</span>
-                        <button onclick="changePassengerCount('teen', 1)">+</button>
-                    </div>
+                    <div class="passenger-controls"></div>
+                    <button onclick="changePassengerCount('teen', -1)">-</button>
+                    <span id="teenCount">0</span>
+                    <button onclick="changePassengerCount('teen', 1)">+</button>
                 </div>
                 <div class="passenger-row">
                     <span>유아 (만 0-11세)</span>
-                    <div class="passenger-controls">
-                        <button onclick="changePassengerCount('child', -1)">-</button>
-                        <span id="childCount">0</span>
-                        <button onclick="changePassengerCount('child', 1)">+</button>
-                    </div>
+                    <div class="passenger-controls"></div>
+                    <button onclick="changePassengerCount('child', -1)">-</button>
+                    <span id="childCount">0</span>
+                    <button onclick="changePassengerCount('child', 1)">+</button>
                 </div>
                 <div class="popup-actions">
                     <button onclick="applyPassengerCount()">적용</button>
