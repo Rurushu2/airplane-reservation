@@ -112,18 +112,17 @@ header nav a:hover {
 
   .hero-text {
     z-index: 10;
-    position: absolute;
+    position: relative;
     text-align: left;
     color: white;
     padding-left: 90px;
     padding-bottom: 350px;
-    top: 200px; /* 아래로 50px 이동 */
-    left: 200px; /* 오른쪽으로 30px 이동 */
-    
+    top: 300px; /* 아래로 50px 이동 */
+    left: 50px; /* 오른쪽으로 30px 이동 */
 }
 
 .hero h1 {
-  font-size: 70px;
+  font-size: 50px;
   margin-bottom: 20px;
 }
 
