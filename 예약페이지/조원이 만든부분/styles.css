@@ -38,7 +38,7 @@ body {
   
   .hero {
     height: 100vh;
-    background-image: url('/flight.jpg'); /* 배경 이미지 URL */
+    background-image: url('./background3.jpg'); /* 배경 이미지 URL */
     background-size: cover;
     background-position: center;
     display: flex;
