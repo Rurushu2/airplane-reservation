@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>OnAir - Flight Reservation</title>
     <!-- CSS 파일 연결 -->
-    <link rel="stylesheet" href="/styles.css">
+    <link rel="stylesheet" href="./mainscreen.css">
 </head>
 <body>
 <!-- 세로 흰 줄 추가 -->
@@ -22,16 +22,60 @@
     </nav>
 </header>
 
+<div class="social-links">
+    <a href="#">
+        <img src="facebook.png" alt="Facebook Icon"> 
+        <img src="twitter.png" alt="Twitter Icon"> 
+        <img src="instagram.png" alt="Instagram Icon"> 
+    </a>
+</div>
+
+
 <!-- 메인 배경 이미지 슬라이드 -->
 <section class="hero">
+    <div class="hero-slides">
+        <div class="slide" data-text-top="200" data-text-left="100" style="background-image: url('./background3.jpg');"></div>
+        <div class="slide" data-text-top="200" data-text-left="400" style="background-image: url('./background4.jpg');"></div>
+        <div class="slide" data-text-top="100" data-text-left="50" style="background-image: url('./background5.jpg');"></div>
+    </div>
     <div class="hero-text">
         <h1>Fly High with Us</h1>
     </div>
-    <div class="social-links">
-        <a href="#">FACEBOOK</a>
-        <a href="#">TWITTER</a>
-        <a href="#">INSTAGRAM</a>
-    </div>
 </section>
+
+
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        const slides = document.querySelectorAll(".hero-slides .slide");
+        const heroText = document.querySelector(".hero-text");
+        let currentSlide = 0;
+
+        function updateTextPosition(slide) {
+            const textTop = slide.getAttribute("data-text-top");
+            const textLeft = slide.getAttribute("data-text-left");
+
+            // 텍스트 위치 업데이트
+            heroText.style.top = `${textTop}px`;
+            heroText.style.left = `${textLeft}px`;
+        }
+
+        function showNextSlide() {
+            slides[currentSlide].classList.remove("active");
+            currentSlide = (currentSlide + 1) % slides.length;
+            slides[currentSlide].classList.add("active");
+
+            // 현재 슬라이드의 텍스트 위치 업데이트
+            updateTextPosition(slides[currentSlide]);
+        }
+
+        // 5초마다 슬라이드 변경
+        setInterval(showNextSlide, 5000);
+
+        // 초기 설정
+        slides[currentSlide].classList.add("active");
+        updateTextPosition(slides[currentSlide]); // 초기 텍스트 위치
+    });
+</script>
+
 </body>
 </html>
