@@ -2,8 +2,10 @@
 body {
     margin: 0;
     font-family: Arial, sans-serif;
-    background: url('background.jpg') no-repeat center center fixed; /* 배경 이미지 설정 */
-    background-size: cover; /* 배경 이미지 크기를 화면에 맞게 조정 */
+    background-image: url('background14.jpg'); /* 배경 이미지 경로 */
+            background-size: cover; /* 이미지를 화면 크기에 맞춤 */
+            background-position: center; /* 이미지 위치를 중앙에 고정 */
+            background-repeat: no-repeat; /* 이미지 반복 방지 */
     display: flex;
     justify-content: center;
     align-items: center;
